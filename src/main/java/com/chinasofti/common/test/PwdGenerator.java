@@ -8,10 +8,10 @@ public class PwdGenerator {
     static String salt2          = "67891";
     static int    hashIterations = 2;
     static int    count          = 0;
-    //    static String username       = "admin";
-    //    static String hashKey        = "3a0a7f07077035a376f855c12b728d60";
-    static String username       = "guoyu";
-    static String hashKey        = "165e9ea6df2b0e787f416d65290253f0";
+    static String username       = "admin";
+    static String hashKey        = "3a0a7f07077035a376f855c12b728d60";
+    /*static String username       = "guoyu";
+    static String hashKey        = "165e9ea6df2b0e787f416d65290253f0";*/
 
     public static void main(String[] args) {
         exhaustive();
@@ -148,7 +148,7 @@ public class PwdGenerator {
                                     count = count + 1;
                                     //第8层循环，处理8位字符的密码
                                     for (String hx : f) {
-                                        String key8 = ax + bx + cx + dx + ex + fx+gx+hx;
+                                        String key8 = ax + bx + cx + dx + ex + fx + gx + hx;
                                         if (testGeneratePassword2(key3)) {
                                             System.out.println("破解成功!!!  " + username + "密码为：" + key8);
                                             break;
