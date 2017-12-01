@@ -58,18 +58,40 @@ public class LoginLogoutTest extends Base {
         System.out.println(salt2);
         System.out.println(encodedPassword);
     }
-    
+
     @Test
     public void testGeneratePassword2() {
         String algorithmName = "md5";
         String username = "guoyu";
-        String password = "111";
+        String password = "1";
         String salt2 = "67891";
         int hashIterations = 2;
-        SimpleHash hash = new SimpleHash(algorithmName, password,  username+salt2, hashIterations);
-        String encodedPassword = hash.toHex();
-        System.out.println(salt2);
-        System.out.println(encodedPassword);
+        for (int i = 0; i < 1000000; i++) {
+            SimpleHash hash = new SimpleHash(algorithmName, String.valueOf(i), username + salt2, hashIterations);
+            if (hash.toHex().equals("165e9ea6df2b0e787f416d65290253f0")) {
+                System.out.println("破解成功!!!  " + username + "密码为：" + i);
+                //break;
+            }
+            //每隔1万打印一次
+            if (i % 10000 == 0) {
+                System.out.println("当前位置" + i + "___" + "当前系统时间" + System.currentTimeMillis());
+            }
+        }
+    }
+    
+    @Test
+    public Boolean testGeneratePassword3(String password) {
+        String algorithmName  = "md5";
+        String salt2          = "67891";
+        int    hashIterations = 2;
+        password = "1";
+        String username       = "admin";
+        String hashKey        = "3a0a7f07077035a376f855c12b728d60";
+        SimpleHash hash = new SimpleHash(algorithmName, password, username + salt2, hashIterations);
+        if (hash.toHex().equals(hashKey)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -95,5 +117,15 @@ public class LoginLogoutTest extends Base {
         protected Class getDefaultType() {
             return null;
         }
+    }
+    /**
+     * 
+    * <p>Title: keyCrack </p>
+    * <p>Description: 穷举破解法 </p>    参数说明
+    * @author lijun
+    * @date 2017年12月1日
+     */
+    public void keyCrack(){
+        
     }
 }
