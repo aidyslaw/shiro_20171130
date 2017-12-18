@@ -172,8 +172,8 @@
                               <constraint>
                                 <height>-1</height>
                                 <width>-1</width>
-                                <x>27</x>
-                                <y>16</y>
+                                <x>480</x>
+                                <y>525</y>
                               </constraint>
                               <sourceConnections>
                                 <net.java.amateras.uml.classdiagram.model.GeneralizationModel>
